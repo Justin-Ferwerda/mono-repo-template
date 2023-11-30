@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from json import loads
+from environ import Env
+
+
+env = Env()
+# reading .env file
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7nk#_ex3fq5a@29a=!s-$j9@k+19z55x9&jb419+wl8rhocq^7'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = loads(env("ALLOWED_HOSTS"))
 
 
 # Application definition
@@ -42,10 +49,7 @@ INSTALLED_APPS = [
     'api',
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'http://127.0.0.1:3000'
-)
+CORS_ORIGIN_WHITELIST = loads(env("CORS_ORIGIN_WHITELIST"))
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
