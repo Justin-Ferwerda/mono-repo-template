@@ -24,7 +24,7 @@ For BE .env, you can create a new django secret key with this command-
 
 ```python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'```
 
-You will place it into a .env file in ```/API```, according to the sample.env.
+You will place it into a .env file in ```/API/app```, according to the sample.env.
 
 Then while in the root folder, this command:
 
